@@ -1,0 +1,25 @@
+keycode :
+    // ESC = 65307
+    // w = 119
+    // a = 97
+    // s = 115
+    // d = 100
+
+
+    asset need et idee :
+     decor simple ca a lair trop complique de faire des patterns avec des murs etc oualors faut edit la map etc c'est chiant et sera pas pris en compte
+
+     -collectible:
+        fiole? champi? baton magique?
+     -mur exterieur
+        brique/ bois
+     -bloc interieur
+        biblio ou etagere.
+    -sol:
+        parquet.
+     -personnage joueur
+        magicien.
+     -sorti qui change en fonction des collectibles genre sorti open et sorti ferme
+        portail.
+
+et GG i guess

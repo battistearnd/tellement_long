@@ -57,6 +57,7 @@ int main(int argc,char **argv)
 		if (save_map(argv[1], &vars)== 1)
 			exit(EXIT_FAILURE);
 	}
+	
 	else
 		write(1,"there must be one argument\n", 27);
 	exit(EXIT_SUCCESS);

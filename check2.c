@@ -99,3 +99,26 @@ void	door_locked_up_down(t_game *game, int door_row, int door_col)
 		game->textures.ground, door_col * 32, (door_row + 1) * 32);
 	}
 }
+
+void	check_playable_row(t_game *game, int *c, int *p, int *e)
+{
+	int	j;
+	int	i;
+
+	i = 0;
+	while (game->map[i + 1])
+	{
+		j = 0;
+		while (game->map[i][j + 1])
+		{
+			if (game->map[i][j] == 'C')
+				*c = 1;
+			if (game->map[i][j] == 'P')
+				*p = 1;
+			if (game->map[i][j] == 'E')
+				*e = 1;
+			j++;
+		}
+		i++;
+	}
+}

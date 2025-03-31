@@ -56,8 +56,11 @@ int main(int argc,char **argv)
 	{
 		if (save_map(argv[1], &vars)== 1)
 			exit(EXIT_FAILURE);
+		game.mlx = mlx_init();
+		game.window = mlx_new_window(game.mlx, (game.map_cols - 1) * 32, \
+		(game.map_rows + 1) * 32, "so_long");
+		open_images(&vars);
 	}
-	open_images(&vars);
 	else
 		write(1,"there must be one argument\n", 27);
 	exit(EXIT_SUCCESS);

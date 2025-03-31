@@ -15,26 +15,3 @@ void	put_player(t_game *game, int width, int height)
 	game->x = width;
 	game->y = height;
 }
-
-void	check_playable_row(t_game *game, int *c, int *p, int *e)
-{
-	int	j;
-	int	i;
-
-	i = 0;
-	while (game->map[i + 1])
-	{
-		j = 0;
-		while (game->map[i][j + 1])
-		{
-			if (game->map[i][j] == 'C')
-				*c = 1;
-			if (game->map[i][j] == 'P')
-				*p = 1;
-			if (game->map[i][j] == 'E')
-				*e = 1;
-			j++;
-		}
-		i++;
-	}
-}

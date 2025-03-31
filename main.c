@@ -27,24 +27,26 @@ void clean_exit(t_vars *vars)
 	exit(0);
 }
 
-int handle_key(int keycode, t_vars *vars)
+void	update_player_position(t_game *game, int key)
 {
-	// Sauvegarde de la position actuelle
-	vars->old_x = vars->player_x;
-	vars->old_y = vars->player_y;
+	int		i;
+	int		j;
+	char	*moves;
 
-	// Déplacement du joueur
-	if (keycode == XK_Escape) // Quitter avec ESC
-		clean_exit(vars);
-	else if (keycode == XK_w && vars->player_y > 0)
-		vars->player_y -= MOVE_STEP;
-	else if (keycode == XK_s && vars->player_y < HEIGHT - vars->player_height)
-		vars->player_y += MOVE_STEP;
-	else if (keycode == XK_a && vars->player_x > 0)
-		vars->player_x -= MOVE_STEP;
-	else if (keycode == XK_d && vars->player_x < WIDTH - vars->player_width)
-		vars->player_x += MOVE_STEP;
-	return (0);
+	i = game->x;
+	j = game->y;
+	moves = ft_itoa(game->moves);
+	write(1, moves, ft_strlen(moves));
+	write(1, "\n", 1);
+	free(moves);
+	if (key == 115 && game->map[j + 1][i] != '1')
+		move_top(game, i, j);
+	else if (key == 119 && game->map[j - 1][i] != '1')
+		move_down(game, i, j);
+	else if (key == 97 && game->map[j][i - 1] != '1')
+		move_left(game, i, j);
+	else if (key == 100 && game->map[j][i + 1] != '1')
+		move_right(game, i, j);
 }
 
 int main(int argc,char **argv)
@@ -60,6 +62,9 @@ int main(int argc,char **argv)
 		game.window = mlx_new_window(game.mlx, (game.map_cols - 1) * 32, \
 		(game.map_rows + 1) * 32, "so_long");
 		open_images(&vars);
+		mlx_key_hook(game.window, key_hook, &game);
+		mlx_hook(game.window, 17, 0, on_destroy, &game);
+		mlx_loop(game.mlx);
 	}
 	else
 		write(1,"there must be one argument\n", 27);
